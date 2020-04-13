@@ -1,0 +1,4 @@
+.idea/
+.htaccess
+robots.txt
+application/config/db.php
