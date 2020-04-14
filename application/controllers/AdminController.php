@@ -14,7 +14,7 @@ class AdminController extends Controller
 
         if (!empty($_POST)) {
             if (!$this->model->loginValidate($_POST)) {
-                $this->view->message('error', $this->model->error);
+                $this->view->message('danger', $this->model->error);
             }
             $_SESSION['admin'] = true;
             $this->view->location('/');
