@@ -31,7 +31,7 @@ class AdminController extends Controller
         }
         if (!empty($_POST)) {
             if (!$this->model->editValidate($_POST)) {
-                $this->view->message('error', $this->model->error);
+                $this->view->message('danger', $this->model->error);
             }
             $this->model->editTask($_POST, $this->route['id']);
             $this->view->message('success', 'Задача сохранена');

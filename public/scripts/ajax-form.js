@@ -12,18 +12,34 @@ $(document).ready(function() {
             processData: false,
             error: function(err) {
                 if (err.status == 403) {
-                    alert('Ошибка: Требуется авторизация');
+                    $('#ajax-message div.alert').remove();
+                    $('#ajax-message').append(
+                        `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Ошибка:</strong> Требуется авторизация!
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>`);
                 }
             },
             success: function(result) {
-                if (el.attr('id') == 'add-form') {
+                json = jQuery.parseJSON(result);
+                if (el.attr('id') == 'add-form' && json.status == 'success') {
                     el[0].reset();
                 }
-                json = jQuery.parseJSON(result);
+
                 if (json.url) {
                     window.location.href = json.url;
                 } else {
-                    alert(json.message);
+                    $('#ajax-message div.alert').remove();
+                    let ajax_status = json.status ? json.status : 'info';
+                    $('#ajax-message').append(
+                    `<div class="alert alert-` + ajax_status + ` alert-dismissible fade show" role="alert">
+                        ` + json.message + `
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>`);
                 }
             },
         });

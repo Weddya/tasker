@@ -43,7 +43,7 @@ class HomeController extends Controller
     {
         if (!empty($_POST)) {
             if (!$this->model->addValidate($_POST)) {
-                $this->view->message('error', $this->model->error);
+                $this->view->message('danger', $this->model->error);
             }
             $this->model->addTask($_POST);
             $this->view->message('success', 'Задача добавлена');

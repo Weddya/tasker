@@ -2,6 +2,7 @@
     <div class="row">
         <main role="main" class="col-md-4 col-lg-4 mx-auto">
             <h2><?php echo $title; ?></h2>
+            <div id="ajax-message"></div>
             <form action="/add" method="post" id="add-form">
                 <div class="form-group">
                     <label for="username">Имя пользователя</label>
