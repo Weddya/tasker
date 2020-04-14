@@ -10,6 +10,11 @@ $(document).ready(function() {
             contentType: false,
             cache: false,
             processData: false,
+            error: function(err) {
+                if (err.status == 403) {
+                    alert('Ошибка: Требуется авторизация');
+                }
+            },
             success: function(result) {
                 if (el.attr('id') == 'add-form') {
                     el[0].reset();
